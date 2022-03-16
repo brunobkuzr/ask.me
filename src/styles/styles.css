@@ -115,3 +115,7 @@ a{
 .botao-post:hover{
     color: white;
 }
+
+section{
+    text-align: center;
+}

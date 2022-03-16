@@ -3,3 +3,7 @@
     font-family:cursive;
     font-size: large;    
 }
+
+.navbar-inner{
+ align-items: start;
+}

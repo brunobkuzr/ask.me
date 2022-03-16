@@ -1,11 +1,13 @@
 import {http_noauth} from "../http_config";
-import { useNavigate } from "react-router-dom"
+import {useNavigate} from "react-router-dom"
+import {Redirect} from "react-router-dom"
+import React from "react";
 
 
-export const LoginService = () => {
-    const navigate = useNavigate();
+class LoginService {
 
-    function fazLogin(username, password, inteste) {
+
+    fazLogin(username, password, inteste) {
 
 
         if (!inteste) {
@@ -26,7 +28,8 @@ export const LoginService = () => {
                 localStorage.setItem('urlfoto', 'nft_4')
                 localStorage.setItem('id', '99999999')
                 localStorage.setItem('nome', 'Ademiro ')
-                navigate("/home");
+                console.log('aa')
+                return (<Redirect to={'/home'}/>)
             } else {
                 localStorage.setItem('login', '')
                 localStorage.setItem('pass', '')
@@ -39,4 +42,4 @@ export const LoginService = () => {
     }
 }
 
-export default  LoginService;
+export default new LoginService();

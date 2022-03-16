@@ -1,18 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import {createTheme, ThemeProvider} from "@mui/material/styles";
-import MUIRichTextEditor from "mui-rte";
-import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import Button from "@mui/material/Button";
-import {NavLink as Link} from "react-router-dom";
+import { Redirect} from "react-router-dom";
 import {useRef, useState, useEffect, useContext} from "react";
 import AuthContext from "../context/AuthProvider";
 import LoginService from "../services/impl/login_service_impl";
 
 
 const Login = () => {
+    const [indicaLogin, setLogin] = useState(0);
     const {setAuth} = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
@@ -32,23 +28,14 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        LoginService.faz
         console.log(user, pwd);
+        LoginService.fazLogin(user, pwd, 1);
         setUser('');
         setPwd('');
-        setSuccess(true);
     }
     return (
         <>
-            {success ? (
-                <section>
-                    <h1>Você entrou</h1>
-                    <br/>
-                    <p>
-                        <a href="#"> Go to Home</a>
-                    </p>
-                </section>
-            ) : (
+
                 <Box
                     component="form"
                     sx={{
@@ -78,13 +65,13 @@ const Login = () => {
                             value={pwd}
                             required
                         />
-                        <Button className="botao-post" component={Link} variant="contained" color="success" to="/novo">
+                        <Button className="botao-post"  onClick={ handleSubmit} variant="contained" color="success" >
                             Entrar
                         </Button>
 
                     </form>
                 </Box>
-            )}
+
         </>
     )
 }
