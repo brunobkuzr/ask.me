@@ -1,0 +1,211 @@
+### Login do sistema
+POST http://localhost:8080/api/login
+Content-Type: application/json
+
+# Resposta:
+#
+# {
+#	"id": 9999,
+#	"nome": "....",
+#	"urlFotoPerfil": "..."
+# }
+
+{
+  "login": "login do usuario",
+  "senha": "senha do usuario"
+}
+
+### Login do sistema
+GET http://localhost:8080/api/usuario/{idUsuario}/dados
+
+# Resposta:
+#
+# {
+#	"id": 9999,
+#	"nome": "....",
+#	"urlFotoPerfil": "..."
+# }
+
+### Lista paginada de posts do forum
+GET http://localhost:8080/api/forum/posts?itemsPorPagina=20&paginaAtual=0&ordenar=(dataPostagem,desc)&filtro=(todas|naoRespondidas|respondidas)
+Authorization: Basic base64(login:password)
+
+# Parametros (url):
+#  - itemsPorPagina : int :  número de posts por pagina para exibir na listagem
+#  - paginaAtual : int : indice da pagina atual
+#  - ordenar : par(string,string) -> (dataPostagem,desc) : um par contendo qual a coluna desejada, e a ordenação desejada
+#       * colunas validas: dataPostagem | dataResposta | pontuacao
+#       * ordenação: asc | desc
+#  - filtro : string : uma string definindo um tipo especifico de post a ser retornado
+#       * todos: traz todos os posts
+#       * naoRespondidas: traz somente mensagens não respondidas
+#       * respondidas: traz somentes mensagens com respostas
+#
+# Resposta:
+#
+# {
+#	"itemsPorPagina": 20,
+#	"paginaAtual": 1,
+#	"totalDePaginas": 999,
+#	"itens": [
+#		{
+#			"id": 9999,
+#			"titulo": "...",
+#			"resumo": "...",
+#			"likes": 0,
+#			"dislikes": 0,
+#			"respostas": 0,
+#			"dataHoraPostagem": "01-12-2022 00:00:00",
+#			"situacao": "neutro|like|dislike"
+#			"topicos": [
+#				"java",
+#				"kotlin",
+#				"orientacao-a-objetos"
+#			],
+#			"usuario": {
+#				"id": 9999,
+#				"nome": "....",
+#				"urlFotoPerfil": "..."
+#			}
+#		}
+#	]
+# }
+
+### Criar um novo post no forum
+POST http://localhost:8080/api/forum/postar
+Authorization: Basic base64(login:password)
+Content-Type: application/json
+
+# Resposta:
+#
+# {
+#	"id": 999,
+#	"titulo": "...",
+#	"resumo": "Primeiros X caracteres do post",
+#	"topicos": [
+#		"java",
+#		"kotlin",
+#		"orientacao_a_objetos"
+#	],
+#	"dataHoraPostagem": "01-12-2022 00:00:00",
+#	"dataHoraModificação": "01-12-2022 00:00:00"
+# }
+
+{
+  "titulo": "Título do post",
+  "conteudo": "Conteudo completo do post...",
+  "topicos": [
+    "java",
+    "kotlin",
+    "orientacao_a_objetos"
+  ]
+}
+
+### Excluir um post do forum
+DELETE http://localhost:8080/api/forum/post/{idPost}
+Authorization: Basic base64(login:password)
+
+# Resposta:
+# {
+# 	"sucesso": true
+# }
+
+### Listar todos os dados de um post
+GET http://localhost:8080/api/forum/post/{idPost}
+Authorization: Basic base64(login:password)
+
+# Resposta:
+#
+# {
+#	"id": 9999,
+#	"titulo": "...",
+#	"conteudo": "...",
+#	"likes": 0,
+#	"dislikes": 0,
+#	"respostas": 0,
+#	"dataHoraPostagem": "01-12-2022 00:00:00",
+#	"dataHoraModificação": "01-12-2022 00:00:00",
+#	"situacao": "neutro|like|dislike"
+#	"topicos": [
+#		"java",
+#		"kotlin",
+#		"orientacao-a-objetos"
+#	],
+#	"usuario": {
+#		"id": 9999,
+#		"nome": "....",
+#		"urlFotoPerfil": "..."
+#	}
+# }
+
+### Lista paginada de respostas a um posts
+GET http://localhost:8080/api/forum/post/{idPost}/respostas?itemsPorPagina=20&paginaAtual=0&ordenar=(dataPostagem,desc)
+Authorization: Basic base64(login:password)
+
+# Parametros (url):
+#  - itemsPorPagina : int :  número de resposta por pagina para exibir na listagem
+#  - paginaAtual : int : indice da pagina atual
+#  - ordenar : par(string,string) -> (dataPostagem,desc) : um par contendo qual a coluna desejada, e a ordenação desejada
+#       * colunas validas: dataPostagem | dataResposta | pontuacao
+#       * ordenação: asc | desc
+#
+# Resposta:
+#
+# {
+#	"itemsPorPagina": 20,
+#	"paginaAtual": 1,
+#	"totalDePaginas": 999,
+#	"itens": [
+#		{
+#			"id": 9999,
+#			"titulo": "...",
+#			"conteudo": "...",
+#			"likes": 0,
+#			"dislikes": 0,
+#			"respostas": 0,
+#			"dataHoraPostagem": "01-12-2022 00:00:00",
+#			"situacao": "neutro|like|dislike"
+#			"topicos": [
+#				"java",
+#				"kotlin",
+#				"orientacao-a-objetos"
+#			],
+#			"usuario": {
+#				"id": 9999,
+#				"nome": "....",
+#				"urlFotoPerfil": "..."
+#			}
+#		}
+#	]
+# }
+
+### Curtir um post
+POST http://localhost:8080/api/forum/post/{idPost}/like
+Authorization: Basic base64(login:password)
+
+# Resposta:
+# {
+# 	"sucesso": true
+# }
+
+### Descurtir um post
+POST http://localhost:8080/api/forum/post/{idPost}/dislike
+Authorization: Basic base64(login:password)
+
+# Resposta:
+# {
+# 	"sucesso": true
+# }
+
+### Descurtir um post
+GET http://localhost:8080/api/forum/post/{idPost}/euCurti
+Authorization: Basic base64(login:password)
+
+# Resposta:
+# {
+# 	"situacao": "nenhum|like|dislike"
+# }
+
+###
+GET http://localhost:8080/api/
+Authorization: Basic base64(login:password)

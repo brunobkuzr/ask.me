@@ -1,0 +1,117 @@
+body{
+    background-color:wheat;
+    font-family: cursive;
+    
+}
+
+
+.div-principal{
+
+    padding-left: 15%;
+    padding-right: 15%;
+
+}
+
+.p-topo{
+    position: absolute;
+    top: 90px;
+    font-size: 20px;
+}
+
+.div-card{
+    margin-top: 100px;
+    
+}
+
+Box{
+    align-items: left;
+}
+
+.vl{
+    border-left: 2px solid grey;
+    height: 90px;
+}
+
+.span-resposta{
+    left: 0;
+}
+
+.grid-principal{
+    text-align: left;
+    font-family: cursive;
+}
+
+.div-post{
+    width: 50%;
+    margin-top: 5%;
+    background: aliceblue;
+    border-style: groove;
+    height: 70vh;
+    max-height: 70vh;
+
+}
+a{
+   font-family: cursive;
+   font-size: 20px;
+}
+
+.grid-texto{
+    text-align: left;
+    
+}
+
+.botao-pergunta{
+    font-family: cursive;
+    font-size: smaller;
+    top: 35px;
+    left: 88%;
+
+}
+
+.botao-pergunta:hover{
+    color: white;
+
+}
+.container{
+    display: flex;
+
+}
+.fixed{
+    width: 200px;
+}
+.flex-item{
+    flex-grow: 1;
+    width: 5%;
+    margin-left: 5%;
+    margin-top: 5%;
+    height: 80vh;
+    max-height: 80vh;
+}
+
+.div-dicas {
+    background: aliceblue;
+    border-style: groove;
+    height: 40vh;
+    max-height: 40vh;
+}
+
+.div-botao {
+    align-items: center;
+    align-content: center;
+    height: 30vh;
+    max-height: 30vh;
+    justify-content: center;
+}
+
+.botao-post{
+    height: 40px;
+    margin-left: 100%;
+    top: 20%;
+    left: 26%;
+    width: 300px;
+
+
+}
+.botao-post:hover{
+    color: white;
+}
