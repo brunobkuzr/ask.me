@@ -4,7 +4,7 @@ import Astronaut from "../static/astronaut.jpg"
 
 
 import {useHistory} from "react-router-dom";
-
+import '../styles/styles.scss'
 
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
